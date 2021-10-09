@@ -1,0 +1,105 @@
+[gd_resource type="ShaderMaterial" load_steps=10 format=2]
+
+[ext_resource path="res://Texture/Bloom/bloom_ellipse.png" type="Texture" id=1]
+
+[sub_resource type="VisualShaderNodeTexture" id=1]
+texture = ExtResource( 1 )
+
+[sub_resource type="VisualShaderNodeScalarOp" id=2]
+operator = 2
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.635616, 0.838356 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.976471, 1, 0.211765, 0.231373, 1, 0.935631, 0.25098, 0.376471 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="VisualShaderNodeTexture" id=5]
+texture = SubResource( 4 )
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=6]
+uniform_name = "Strength"
+
+[sub_resource type="VisualShaderNodeExpression" id=7]
+size = Vector2( 250, 150 )
+expression = "MODELVIEW_MATRIX = INV_CAMERA_MATRIX * mat4(CAMERA_MATRIX[0],CAMERA_MATRIX[1],CAMERA_MATRIX[2],WORLD_MATRIX[3]);
+MODELVIEW_MATRIX = MODELVIEW_MATRIX * mat4(vec4(length(WORLD_MATRIX[0].xyz), 0.0, 0.0, 0.0),vec4(0.0, length(WORLD_MATRIX[1].xyz), 0.0, 0.0),vec4(0.0, 0.0, length(WORLD_MATRIX[2].xyz), 0.0),vec4(0.0, 0.0, 0.0, 1.0));"
+
+[sub_resource type="VisualShader" id=8]
+code = "shader_type spatial;
+render_mode blend_add, specular_schlick_ggx, unshaded;
+
+uniform sampler2D tex_frg_2;
+uniform float Strength;
+uniform sampler2D tex_frg_5;
+
+
+
+void vertex() {
+// Expression:2
+	vec3 n_out2p0;
+	n_out2p0 = vec3(0.0, 0.0, 0.0);
+	{
+		MODELVIEW_MATRIX = INV_CAMERA_MATRIX * mat4(CAMERA_MATRIX[0],CAMERA_MATRIX[1],CAMERA_MATRIX[2],WORLD_MATRIX[3]);
+		MODELVIEW_MATRIX = MODELVIEW_MATRIX * mat4(vec4(length(WORLD_MATRIX[0].xyz), 0.0, 0.0, 0.0),vec4(0.0, length(WORLD_MATRIX[1].xyz), 0.0, 0.0),vec4(0.0, 0.0, length(WORLD_MATRIX[2].xyz), 0.0),vec4(0.0, 0.0, 0.0, 1.0));
+	}
+
+// Output:0
+	UV2 = n_out2p0.xy;
+
+}
+
+void fragment() {
+// Texture:2
+	vec4 tex_frg_2_read = texture(tex_frg_2, UV.xy);
+	vec3 n_out2p0 = tex_frg_2_read.rgb;
+	float n_out2p1 = tex_frg_2_read.a;
+
+// ScalarUniform:6
+	float n_out6p0 = Strength;
+
+// ScalarOp:3
+	float n_out3p0 = n_out2p1 * n_out6p0;
+
+// Texture:5
+	vec4 tex_frg_5_read = texture(tex_frg_5, vec3(n_out3p0).xy);
+	vec3 n_out5p0 = tex_frg_5_read.rgb;
+	float n_out5p1 = tex_frg_5_read.a;
+
+// Output:0
+	ALBEDO = n_out5p0;
+	ALPHA = n_out5p1;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -331, 64.5 )
+modes/blend = 1
+flags/unshaded = true
+nodes/vertex/2/node = SubResource( 7 )
+nodes/vertex/2/position = Vector2( 20, 220 )
+nodes/vertex/2/size = Vector2( 250, 150 )
+nodes/vertex/2/input_ports = ""
+nodes/vertex/2/output_ports = "0,1,output0;"
+nodes/vertex/2/expression = "MODELVIEW_MATRIX = INV_CAMERA_MATRIX * mat4(CAMERA_MATRIX[0],CAMERA_MATRIX[1],CAMERA_MATRIX[2],WORLD_MATRIX[3]);
+MODELVIEW_MATRIX = MODELVIEW_MATRIX * mat4(vec4(length(WORLD_MATRIX[0].xyz), 0.0, 0.0, 0.0),vec4(0.0, length(WORLD_MATRIX[1].xyz), 0.0, 0.0),vec4(0.0, 0.0, length(WORLD_MATRIX[2].xyz), 0.0),vec4(0.0, 0.0, 0.0, 1.0));"
+nodes/vertex/connections = PoolIntArray( 2, 0, 0, 5 )
+nodes/fragment/2/node = SubResource( 1 )
+nodes/fragment/2/position = Vector2( -400, 260 )
+nodes/fragment/3/node = SubResource( 2 )
+nodes/fragment/3/position = Vector2( -120, 280 )
+nodes/fragment/5/node = SubResource( 5 )
+nodes/fragment/5/position = Vector2( 80, 220 )
+nodes/fragment/6/node = SubResource( 6 )
+nodes/fragment/6/position = Vector2( -400, 540 )
+nodes/fragment/connections = PoolIntArray( 2, 1, 3, 0, 3, 0, 5, 0, 5, 0, 0, 0, 5, 1, 0, 1, 6, 0, 3, 1 )
+
+[resource]
+resource_local_to_scene = true
+shader = SubResource( 8 )
+shader_param/Strength = 0.0

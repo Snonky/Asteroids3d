@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/CompassMarker.gd" type="Script" id=1]
+[ext_resource path="res://Materials/CompassMarker.shader" type="Shader" id=2]
+
+[sub_resource type="ShaderMaterial" id=29]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/MarkerOffset = null
+shader_param/MarkerAlpha = 1.0
+
+[node name="CompassMarker" type="Panel" groups=[
+"CompassMarkers",
+]]
+material = SubResource( 29 )
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 460.0
+margin_top = -40.0
+margin_right = 540.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 40, 40 )
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}

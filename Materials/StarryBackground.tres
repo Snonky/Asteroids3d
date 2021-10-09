@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://Materials/starry_background.shader" type="Shader" id=1]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/NUM_LAYERS = 5.0
+shader_param/TRAVEL_SPEED = 0.0004
+shader_param/TILT = 0.0
+shader_param/PAN = 0.0
+shader_param/SWAY = 0.0

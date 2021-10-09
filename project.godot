@@ -1,0 +1,79 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "KinematicBody",
+"class": "AsteroidBody",
+"language": "GDScript",
+"path": "res://Scripts/AsteroidBody.gd"
+}, {
+"base": "",
+"class": "GitAPI",
+"language": "NativeScript",
+"path": "res://addons/godot-git-plugin/git_api.gdns"
+}, {
+"base": "Spatial",
+"class": "PolarSpawner",
+"language": "GDScript",
+"path": "res://Scripts/PolarSpawner.gd"
+}, {
+"base": "PowerupResource",
+"class": "PowerupRapidfire2x",
+"language": "GDScript",
+"path": "res://Scripts/PowerupScripts/Rapidfire_2x.gd"
+}, {
+"base": "Resource",
+"class": "PowerupResource",
+"language": "GDScript",
+"path": "res://Scripts/PowerupResource.gd"
+}, {
+"base": "KinematicBody",
+"class": "Projectile",
+"language": "GDScript",
+"path": "res://Scripts/Projectile.gd"
+} ]
+_global_script_class_icons={
+"AsteroidBody": "",
+"GitAPI": "",
+"PolarSpawner": "",
+"PowerupRapidfire2x": "",
+"PowerupResource": "",
+"Projectile": ""
+}
+
+[application]
+
+config/name="Asteroids 3D"
+run/main_scene="res://Assets/Main.tscn"
+config/icon="res://icon.png"
+
+[gdnative]
+
+singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+3d_physics/layer_1="asteroids"
+3d_physics/layer_2="projectiles"
+3d_physics/layer_3="powerups"
+3d_physics/layer_4="player"
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
+quality/directional_shadow/size.mobile=256
+quality/shadow_atlas/size.mobile=256
+environment/default_environment="res://default_env.tres"
