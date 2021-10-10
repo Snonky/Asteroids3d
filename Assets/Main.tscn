@@ -337,8 +337,8 @@ randomRotation = 0.005
 ]]
 [connection signal="powerup_destroyed" from="PowerupSpawner" to="GUI" method="_on_powerup_destroyed"]
 [connection signal="powerup_spawned" from="PowerupSpawner" to="GUI" method="_on_powerup_spawned"]
-[connection signal="ship_movement" from="SpaceFighter" to="AsteroidSpawner" method="_on_SpaceFighter_ship_movement"]
 [connection signal="ship_movement" from="SpaceFighter" to="CameraSpatial" method="_on_SpaceFighter_ship_movement"]
+[connection signal="ship_movement" from="SpaceFighter" to="AsteroidSpawner" method="_on_SpaceFighter_ship_movement"]
 [connection signal="ship_movement" from="SpaceFighter" to="GUI" method="_on_SpaceFighter_ship_movement"]
 
 [editable path="SpaceFighter/shieldbash_mesh"]
