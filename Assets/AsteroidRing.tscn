@@ -4,7 +4,6 @@
 [ext_resource path="res://Assets/asteroid_mesh.tres" type="ArrayMesh" id=2]
 [ext_resource path="res://Texture/Asteroid/AsteroidDiffuseTexture.png" type="Texture" id=3]
 
-
 [sub_resource type="SpatialMaterial" id=1]
 flags_do_not_receive_shadows = true
 albedo_texture = ExtResource( 3 )
@@ -21,7 +20,6 @@ segment_count = 4
 spawn_radius = 41
 inner_despawn_radius = 108
 outer_despawn_radius = 1000
-spawn_rate = 10
 default_speed = -11
 active_angle = 1.63
 

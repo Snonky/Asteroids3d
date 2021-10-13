@@ -1,0 +1,36 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path.s3tc="res://.import/wisp.png-345acb35d159f141765560ec6a7a243b.s3tc.stex"
+path.etc="res://.import/wisp.png-345acb35d159f141765560ec6a7a243b.etc.stex"
+metadata={
+"imported_formats": [ "s3tc", "etc" ],
+"vram_texture": true
+}
+
+[deps]
+
+source_file="res://Texture/wisp.png"
+dest_files=[ "res://.import/wisp.png-345acb35d159f141765560ec6a7a243b.s3tc.stex", "res://.import/wisp.png-345acb35d159f141765560ec6a7a243b.etc.stex" ]
+
+[params]
+
+compress/mode=2
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=1
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=false
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

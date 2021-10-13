@@ -1,4 +1,4 @@
-extends KinematicBody
+extends Destructible
 class_name AsteroidBody
 
 var velocity = Vector3.ZERO
@@ -13,8 +13,15 @@ func _physics_process(delta):
 	if(collision):
 		if(collision.collider is Projectile):
 			collision.collider.queue_free()
-		$Hitbox.disabled = true
-		get_parent().destroy_entity(asteroid, true)
+			damage(collision.collider.damage)
+		else:
+			destroy()
 
-func destroy(_finished_animation):
+func destroy():
+	$Hitbox.disabled = true
+	get_parent().destroy_entity(asteroid, true)
+	$cut/AnimationPlayer.play("Cut")
+	
+
+func _on_anim_finished(_anim):
 	queue_free()

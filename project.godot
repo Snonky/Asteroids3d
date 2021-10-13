@@ -9,10 +9,15 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "KinematicBody",
+"base": "Destructible",
 "class": "AsteroidBody",
 "language": "GDScript",
 "path": "res://Scripts/AsteroidBody.gd"
+}, {
+"base": "KinematicBody",
+"class": "Destructible",
+"language": "GDScript",
+"path": "res://Scripts/Destructible.gd"
 }, {
 "base": "",
 "class": "GitAPI",
@@ -41,6 +46,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "AsteroidBody": "",
+"Destructible": "",
 "GitAPI": "",
 "PolarSpawner": "",
 "PowerupRapidfire2x": "",

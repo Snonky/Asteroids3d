@@ -3,6 +3,7 @@ class_name Projectile
 
 export(Curve) var velocityCurve : Curve
 export(float, 0.001, 30, .1) var lifetime = 1.0
+export(int, 0) var damage = 10
 
 var direction
 var travel_time = 0.0

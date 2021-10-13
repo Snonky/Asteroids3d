@@ -269,7 +269,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 120 )
 segment_count = 11
 spawn_radius = 300
 inner_despawn_radius = 107
-spawn_rate = 20.0
 default_speed = -50
 asteroidRotationSpeed = 0.4
 active_angle = 4.71239
@@ -284,6 +283,7 @@ outer_despawn_radius = 1000
 spawn_rate = 0.3
 default_speed = -15
 powerup_types = [ ExtResource( 10 ) ]
+box_rotation_speed = 0.6
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.695694, 0.521791, -0.493704, 0, 0.687286, 0.726387, 0.718338, -0.505343, 0.478141, 0, 13.0763, 0 )
@@ -337,9 +337,9 @@ randomRotation = 0.005
 ]]
 [connection signal="powerup_destroyed" from="PowerupSpawner" to="GUI" method="_on_powerup_destroyed"]
 [connection signal="powerup_spawned" from="PowerupSpawner" to="GUI" method="_on_powerup_spawned"]
-[connection signal="ship_movement" from="SpaceFighter" to="CameraSpatial" method="_on_SpaceFighter_ship_movement"]
-[connection signal="ship_movement" from="SpaceFighter" to="AsteroidSpawner" method="_on_SpaceFighter_ship_movement"]
 [connection signal="ship_movement" from="SpaceFighter" to="GUI" method="_on_SpaceFighter_ship_movement"]
+[connection signal="ship_movement" from="SpaceFighter" to="AsteroidSpawner" method="_on_SpaceFighter_ship_movement"]
+[connection signal="ship_movement" from="SpaceFighter" to="CameraSpatial" method="_on_SpaceFighter_ship_movement"]
 
 [editable path="SpaceFighter/shieldbash_mesh"]
 

@@ -59,9 +59,7 @@ func destroy_entity(asteroid, fx = false):
 	var destroyed = .destroy_entity(asteroid)
 	if destroyed and segments[asteroid["seg"]]["active"]:
 		multimesh.visible_instance_count -= 1
-		if(fx):
-			play_destruction_fx(asteroid)
-		else:
+		if not fx:
 			destroy_asteroid_body(asteroid)
 
 func clean_up_entities():
@@ -123,10 +121,6 @@ func destroy_asteroid_body(asteroid):
 func destroy_asteroid_bodies(segment):
 	for asteroid in segments[segment]["e"]:
 		asteroid["body"].queue_free()
-		
-		
-func play_destruction_fx(asteroid):
-	asteroid["body"].get_node("cut/AnimationPlayer").play("Cut")
 	
 		
 func set_active_angle(angle):
